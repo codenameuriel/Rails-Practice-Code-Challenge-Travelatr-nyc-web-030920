@@ -33,6 +33,12 @@ class PostsController < ApplicationController
     end
   end
 
+  def likes
+     @post = Post.find(params[:id])
+     @post.increment!(:likes)
+     redirect_to post_path
+  end 
+
   private
 
   def post_params

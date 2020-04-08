@@ -12,4 +12,10 @@ class Blogger < ApplicationRecord
       post.likes
     end
   end
+
+# def top_five_destinations
+    
+# end  
+
+
 end

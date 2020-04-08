@@ -1,2 +1,13 @@
 <h1>Posts#show</h1>
 <p>Find me in app/views/posts/show.html.erb</p>
+
+<h1><%= @post.title%></h1>
+<p><%= @post.content%></p> <br>
+
+<%=link_to @post.blogger.name, @post.blogger%><br>
+<%= link_to @post.destination.name, @post.destination%>
+
+
+
+<%= button_to "Like", likes_post_path, method: :patch %><br>
+<%= @post.likes%><br>

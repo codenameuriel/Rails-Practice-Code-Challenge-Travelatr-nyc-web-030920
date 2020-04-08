@@ -7,8 +7,8 @@
 </ul>
 
 <h2>Most liked Post</h2>
-<%= link_to @blogger.most_likes.title, @blogger.most_likes %>
+<%= link_to @blogger.most_likes.title, @blogger.most_likes  if @blogger.most_likes%>  
 
-A link to that blogger's featured post (the post with the most likes)
 
 BONUS A list of that user's top 5 most written about destinations (the destinations with the most posts)
+
