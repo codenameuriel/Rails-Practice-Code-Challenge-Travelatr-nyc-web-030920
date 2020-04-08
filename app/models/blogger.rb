@@ -13,9 +13,11 @@ class Blogger < ApplicationRecord
     end
   end
 
-# def top_five_destinations
-    
-# end  
+def top_five_destinations
+    self.destinations.sort_by do |destination| 
+    destination.posts.count 
+    end.first(5)
+end  
 
 
 end

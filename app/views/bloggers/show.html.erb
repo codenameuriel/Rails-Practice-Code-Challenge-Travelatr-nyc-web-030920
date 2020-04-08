@@ -9,6 +9,10 @@
 <h2>Most liked Post</h2>
 <%= link_to @blogger.most_likes.title, @blogger.most_likes  if @blogger.most_likes%>  
 
-
+<br>
 BONUS A list of that user's top 5 most written about destinations (the destinations with the most posts)
-
+<ol>
+<% @blogger.top_five_destinations.each do |dest|%>
+<li><%= link_to dest.name, destination_path(dest) %></li>
+<%end%>
+</ol>
