@@ -1,4 +1,14 @@
 class PostsController < ApplicationController
+  def index
+    unless params[:sort]
+      @sort = false
+      @posts = Post.all
+    else
+      @sort = true
+      @sorted_posts = Post.sort_by_likes
+    end
+  end
+
   def show
     @post = Post.find(params[:id])
   end
@@ -36,7 +46,7 @@ class PostsController < ApplicationController
   def likes
      @post = Post.find(params[:id])
      @post.increment!(:likes)
-     redirect_to post_path
+     redirect_to @post
   end 
 
   private

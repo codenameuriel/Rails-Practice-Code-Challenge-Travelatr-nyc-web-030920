@@ -1,18 +1,35 @@
 <h1><%= @blogger.name %> Show Page</h1>
 
+<b>Likes per Post</b>
+
 <ul>
-<% @blogger.posts.each do |post| %>
-  <li><%= post.likes %></li>
-<% end %>
-</ul>
+  <% if @sort %>
+    <% @blogger.sort_by_likes.each do |post| %>
+      <li><%= pluralize(post.likes, 'like') %> - post: <%= link_to post.title,  post   %></li>
+    <% end %>
+  <% else %>
+    <% @blogger.posts.each do |post| %>
+      <li><%= pluralize(post.likes, 'like') %> - post: <%= link_to post.title,  post   %></li>
+    <% end %>
+  <% end %>
+ </ul>
+
+<%= button_to "Sort Posts", @blogger, method: :get, name: "sort" %>
+<%= button_to "Unsort", @blogger, method: :get %>
 
 <h2>Most liked Post</h2>
-<%= link_to @blogger.most_likes.title, @blogger.most_likes  if @blogger.most_likes%>  
+<%= link_to @blogger.most_liked_post.title, @blogger.most_liked_post if @blogger.posts %>  
 
 <br>
-BONUS A list of that user's top 5 most written about destinations (the destinations with the most posts)
+
+<h2>Top 5 Written About Destinations</h2>
 <ol>
 <% @blogger.top_five_destinations.each do |dest|%>
 <li><%= link_to dest.name, destination_path(dest) %></li>
 <%end%>
 </ol>
+
+
+<% @blogger.destinations.each do |d| %>
+<%= d.posts.count %> - <%= d.name %><br>
+<% end %>

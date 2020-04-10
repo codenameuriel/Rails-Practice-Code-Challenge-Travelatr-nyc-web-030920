@@ -2,6 +2,13 @@ class BloggersController < ApplicationController
   # before_action 
   def show
     @blogger = Blogger.find(params[:id])
+    
+    unless params[:sort]
+      @sort = false
+    else
+      @sort = true
+    end
+    
   end
 
   def new
@@ -19,7 +26,6 @@ class BloggersController < ApplicationController
     end
   end
    
-
   def edit 
      @blogger = Blogger.find(params[:id])
   end 

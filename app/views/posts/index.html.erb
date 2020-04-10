@@ -1,0 +1,31 @@
+<h1>Posts HomePage</h1>
+
+<%= form_tag("/search", method: :get) do %>
+  <%= label_tag(:q, "Search by Destination:") %>
+  <%= text_field_tag(:q) %>
+
+  <%= submit_tag("Search") %>
+<% end %>
+
+<%#= form_tag("/search", method: :get) do %>
+  <%#= label_tag(:id, "Search by Destination:") %>
+  <%#= collection_select(:destination, :id, Destination.all, :id, :name) %>
+
+  <%#= submit_tag("Search") %>
+<%# end %>
+<br><br>
+<%= button_to "Sort By Likes", posts_path, method: :get, name: "sort" %> 
+
+<%= button_to "Unsort", posts_path, method: :get %>
+
+<ul>
+<% if @sort %>
+  <% @sorted_posts.each do |post| %>
+    <li><%= link_to post.title, post %></li>
+  <% end %>
+<% else %>
+  <% @posts.each do |post| %>
+    <li><%= link_to post.title, post %></li>
+  <% end %>
+<% end %>
+<u/l>

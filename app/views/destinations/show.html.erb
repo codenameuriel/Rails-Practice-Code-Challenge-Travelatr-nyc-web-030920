@@ -1,12 +1,21 @@
-<h1><% @destination.name%>
+<h1>Destination Show Page</h1>
 
-<ul><label>Post Title:</label>
-<% @destination.most_recent.each do |post| %>
-        <li>  <%= link_to post.title, post_path%> </li>
-<% end %>
+<h2><%= @destination.name %></h2>
+<%= image_tag @destination.image_url, size: "450x500" if @destination.image_url %><br><br>
+<b>Country: </b><%= @destination.country %><br><br>
+
+<b>Posts:</b>
+<ul>
+  <% @destination.most_recent.each do |post| %>
+    <li><%= link_to post.title, post %></li>
+  <% end %>
 </ul>
-<label> Most Likes Post: </label><br>
-<%= link_to @destination.most_likes.title, @destination.most_likes  if @destination.most_likes%> <br>
 
-<label> Average Age of Bloggers: </label>
-<%= @destination.average_age.to_i%>
+<b>Most Liked Post:</b><br>
+
+<%= link_to @destination.most_likes.title, @destination.most_likes  if @destination.most_likes%> <br><br>
+
+<b>Average Age of Bloggers:</b><br>
+<%= @destination.bloggers.length > 0 ? @destination.average_age_of_bloggers.to_i : "Bloggers have not yet written about this destination" %>
+<br><br>
+<%= button_to "All Posts", posts_path, method: :get %>
